@@ -1,0 +1,242 @@
+
+/* 清除内外边距 */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, /* structural elements 结构元素 */
+dl, dt, dd, ul, ol, li, /* list elements 列表元素 */
+pre, /* text formatting elements 文本格式元素 */
+fieldset, lengend, button, input, textarea, /* form elements 表单元素 */
+th, td { /* table elements 表格元素 */
+    margin: 0;
+    padding: 0;
+}
+/* 设置默认字体 */
+body,
+button, input, select, textarea { /* for ie */
+    /*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
+    font: 12px/1 Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif; /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+}
+
+h1 { font-size: 18px; /* 18px / 12px = 1.5 */ }
+h2 { font-size: 16px; }
+h3 { font-size: 14px; }
+h4, h5, h6 { font-size: 100%; }
+
+address, cite, dfn, em, var { font-style: normal; } /* 将斜体扶正 */
+code, kbd, pre, samp, tt { font-family: "Courier New", Courier, monospace; } /* 统一等宽字体 */
+small { font-size: 12px; } /* 小于 12px 的中文很难阅读，让 small 正常化 */
+
+/* 重置列表元素 */
+ul, ol { list-style: none; }
+
+/* 重置文本格式元素 */
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+abbr[title], acronym[title] { /* 注：1.ie6 不支持 abbr; 2.这里用了属性选择符，ie6 下无效果 */
+border-bottom: 1px dotted;
+cursor: help;
+}
+
+q:before, q:after { content: ''; }
+/* 重置表单元素 */
+legend { color: #000; } /* for ie6 */
+fieldset, img { border: none; } /* img 搭车：让链接里的 img 无边框 */
+/* 注：optgroup 无法扶正 */
+button, input, select, textarea {
+    font-size: 100%; /* 使得表单元素在 ie 下能继承字体大小 */
+}
+
+/* 重置表格元素 */
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+/* 重置 hr */
+hr {
+    border: none;
+    height: 1px;
+}
+
+.body-warp{
+	width: 360px;
+}
+
+.title{
+	width: 100%;
+	height: 44px;
+	position: relative;
+	line-height: 44px;
+	font-size: 16px;
+	background: #333;
+	color: #FFFFFF;
+	text-align: center;
+	
+}
+.title a{
+	position: absolute;
+	right: 15px;
+	color:#fff;
+}
+.title a:active{
+	text-decoration: none;
+}
+/*日历*/
+.calendar{
+	font-size: 14px;
+	
+}
+.c-box{
+	padding: 0 5px;
+	text-align: center;
+}
+.calendar .week ul{
+	width: 100%;
+	height: 40px;
+	color: #bcbcbc;
+}
+.calendar .week ul li,.calendar .spread ul li{
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin: 0 5px;
+	line-height: 40px;
+	text-align: center;
+}
+.calendar .spread{
+	height: auto;
+}
+.calendar .spread ul{
+	
+}
+.calendar .spread ul li{
+	box-sizing: border-box;
+	position: relative;
+	color: #333333;
+	border-radius: 50%;
+}
+.calendar .spread ul li.border{
+	border: 1px solid #2a579a;
+}
+.calendar .spread ul li .circle{
+	position: absolute;
+	left: 50%;
+	margin-left: -3px;
+	bottom: 4px;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: #ff9900;
+}
+.calendar .spread ul li.active{
+	background-color: #2a579a;
+	color: white;
+}
+.calendar .spread ul li.visited{
+	border:1px solid #2a579a;
+}
+.calendar .shrink{
+	/* 收缩 */
+	height: 40px!important;
+	overflow: hidden;
+}
+.c-box .up{
+	background: linear-gradient(blue 10%, #5698c3 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+	font-size: 20px;
+}
+.c-box .down{
+	background: linear-gradient(#5698c3 10%, blue 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+	font-size: 20px;
+}
+.c-box .btn{
+	width:100%;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 auto;
+}
+.remind_title{
+	height: 47px;
+}
+.remind_title ul{
+	height: 40px;
+	box-shadow:0px 2px 5px #bbbbbb;
+}
+.remind_title ul li{
+	float: left;
+	width:120px;
+	height: 40px;
+	line-height: 40px;
+	text-align:center;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666666;
+}
+.remind_title .active{
+	color: #2a579a!important;
+	position: relative;
+}
+.remind_title .active::after{
+	content: "";
+	position: absolute;
+	left: 39px;
+	bottom: 0;
+	width: 42px;
+	height: 0;
+	border-bottom:2px solid #2a579a; 
+}
+.remind_content ul li{
+	border-bottom: 1px solid #f2f2f2;
+}
+.remind_content ul li div{
+	position: relative;
+	padding: 10px 20px;
+}
+.remind_content ul li div p:nth-child(2){
+	color: #999999;
+	margin: 5px 0;
+}
+.remind_content ul li div p:nth-child(3){
+	color: #0099cc;
+}
+
+.remind_content ul li div span{
+	position: absolute;
+	right: 5px;
+	color: #999999;
+}
+.remind_content ul li div span:nth-child(4){
+	top: 10px;
+	font-size: 14px;
+}
+.remind_content ul li div span:nth-child(5){
+	bottom: 5px;
+}
+.navigation{
+	position: fixed;
+	bottom: 0;
+	height: 50px;
+	background: #fff;
+	width: 360px;
+	box-shadow: 0 0 5px #bcbcbc;
+}
+.navigation ul{
+	display: flex;
+	margin-top: 5px;
+	width: 100%;
+	justify-content: space-around;
+	color: #bcbcbc;
+	font-size: 14px;
+}
+.navigation ul li{
+	text-align:center;
+}
+.navigation ul li.active{
+	color: #2a579a;
+}
+.navigation ul li span{
+	font-size: 24px;
+	margin-bottom: 3px;
+}

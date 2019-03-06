@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jq日历</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.4.2.min.css"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+	<body>
+		<div class="body-warp">
+			<div class="title">
+				<span class="now-d">2019-2-27</span>
+				<a href="javaScript:;">今天</a>
+			</div>
+			<div class="calendar">
+				<div class="c-box">
+					<div class="week">
+						<ul>
+							<li>日</li>
+							<li>一</li>
+							<li>二</li>
+							<li>三</li>
+							<li>四</li>
+							<li>五</li>
+							<li>六</li>
+						</ul>
+					</div>
+					<div class="swiper-container">
+					  	<div class="swiper-wrapper">
+						    <div class="swiper-slide">
+						    	<div class="spread">
+									<ul>
+
+									</ul>
+								</div>
+						    </div>
+						    <div class="swiper-slide">
+						    	<div class="spread">
+									<ul>
+
+									</ul>
+								</div>
+						    </div>
+						    <div class="swiper-slide">
+						    	<div class="spread">
+									<ul>
+
+									</ul>
+								</div>
+						    </div>
+					 	 </div>
+					</div>
+					<div class="btn ">
+						<i class="fa fa-angle-double-up up"></i>
+					</div>
+				</div>
+			</div>
+			<div class="remind">
+				<div class="remind_title">
+					<ul>
+						<li class="active">已设置提醒</li>
+						<li>创建时间</li>
+						<li>最后发言时间</li>
+
+					</ul>
+				</div>
+				<div class="remind_content">
+					<ul>
+						<li>
+							<div>
+								<h2>227市场</h2>
+								<p>定价依据和客户判定</p>
+								<p>我的角色:经办人</p>
+								<span>16:24</span>
+								<span class="fa fa-ellipsis-h fa-2x"></span>
+							</div>
+						</li>
+						<li>
+							<div>
+								<h2>227市场</h2>
+								<p>定价依据和客户判定</p>
+								<p>我的角色:经办人</p>
+								<span>16:24</span>
+								<span class="fa fa-ellipsis-h fa-2x"></span>
+							</div>
+						</li>
+						<li>
+							<div>
+								<h2>227市场</h2>
+								<p>定价依据和客户判定</p>
+								<p>我的角色:经办人</p>
+								<span>16:24</span>
+								<span class="fa fa-ellipsis-h fa-2x"></span>
+							</div>
+						</li>
+						<li>
+							<div>
+								<h2>227市场</h2>
+								<p>定价依据和客户判定</p>
+								<p>我的角色:经办人</p>
+								<span>16:24</span>
+								<span class="fa fa-ellipsis-h fa-2x"></span>
+							</div>
+						</li>
+						<li>
+							<div>
+								<h2>227市场</h2>
+								<p>定价依据和客户判定</p>
+								<p>我的角色:经办人</p>
+								<span>16:24</span>
+								<span class="fa fa-ellipsis-h fa-2x"></span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+				<div class="navigation">
+						<ul>
+							<li>
+								<span class="fa fa-bolt "></span>
+								<p>工作</p>
+							</li>
+							<li>
+								<span class="fa fa-user "></span>
+								<p>角色</p>
+							</li>
+							<li>
+								<span class="fa fa-circle-o "></span>
+								<p>事项圈</p>
+							</li>
+							<li>
+								<span class="fa fa-group "></span>
+								<p>同事</p>
+							</li>
+							<li class="active">
+								<span class="fa fa-calendar-check-o "></span>
+								<p>日历</p>
+							</li>
+						</ul>
+				</div>
+			</div>
+	</body>
+	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/swiper-3.4.2.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			var s_myDate = new Date();
+			var s_year=s_myDate.getFullYear();
+			var s_month=s_myDate.getMonth()+1;
+			var w_day=s_myDate.getDate();
+			var w_year=s_myDate.getFullYear();
+			var w_month=s_myDate.getMonth()+1;
+			var s_time= new Date(w_year,w_month,0);
+			var s_time1= new Date(w_year,w_month-1,0);
+			var now_day=$(".title .now-d");
+			var mySwiper = new Swiper('.swiper-container', {
+	        	direction: 'horizontal',
+	        	loop: true,
+	        	autoHeight: true,
+	        	runCallbacksOnInit: false,
+	        	//初始化
+	        	onInit: function(swiper){
+			      	
+			      	var myDate = new Date();
+			      	now_day.text(myDate.getFullYear()+"-"+(myDate.getMonth()+1)+"-"+myDate.getDate());
+			    },
+			    //向左滑动
+				onSlidePrevStart: function(swiper){
+					
+					var i_btn=$(".c-box .btn");
+					if(i_btn.hasClass("down")){
+						w_day=w_day-7;
+						// console.log(w_day);
+						if(w_day<1){
+							s_time1= new Date(w_year,w_month-1,0);
+							w_month--;
+							w_day=w_day+s_time1.getDate();
+							// console.log(s_time1.getDate());
+						}
+						if (w_month<1) {
+				 			w_year--;
+				 			w_month=12;
+				 		}
+				 		now_day.text(w_year+"-"+w_month+"-"+w_day);
+						week_time(w_year,w_month,w_day,mySwiper.activeIndex);
+						li_tc(w_year,w_month);
+
+			 		}else{
+			 			s_month--;
+			 			if (s_month<1) {
+				 			s_year--;
+				 			s_month=12;
+				 		}
+			 			var myDate = new Date(s_year,s_month,0);
+				      	now_day.text(s_year+"-"+s_month+"-"+myDate.getDate());
+				      	month_time(s_year,s_month,swiper.activeIndex);
+				      	li_tc(s_year,s_month);
+			 		}
+			      	
+			      	
+			   },
+			   //向右滑动
+			   onSlideNextStart: function(swiper){
+			   		var i_btn=$(".c-box .btn");
+			   		if(i_btn.hasClass("down")){
+						w_day=w_day+7;
+						s_time= new Date(w_year,w_month,0);
+						if(w_day>s_time.getDate()){
+
+							w_day=w_day-s_time.getDate();
+							w_month++;
+						}
+						if (w_month>12) {
+				 			w_year++;
+				 			w_month=1;
+				 		}
+				 		now_day.text(w_year+"-"+w_month+"-"+w_day);
+						week_time(w_year,w_month,w_day,mySwiper.activeIndex);
+						li_tc(w_year,w_month);
+			 		}else{
+			 			s_month++;
+			 			if (s_month>12) {
+				 			s_year++;
+				 			s_month=1;
+				 		}
+				 		var myDate = new Date(s_year,s_month,1);
+				      	now_day.text(s_year+"-"+s_month+"-"+myDate.getDate());
+				      	month_time(s_year,s_month,swiper.activeIndex);
+				      	li_tc(s_year,s_month);
+				 		}
+				}
+			 })
+			
+			var i_btn=$(".c-box .btn");
+			var c_height=$(".c-box .spread");
+			month_time(s_year,s_month,1);
+			var c_li=c_height.children();
+			var i_up="fa fa-angle-double-up up";
+			var i_down="fa fa-angle-double-down down";
+			//显示星期
+			function week_time(year,month,day,index){
+				var time  = new Date(year,month,0);
+				var date = time.getDate();
+				var time2 = new Date(w_year,w_month-1,0);
+				//获得这个月的一号是星期几
+				// console.log(time2.getDate(),month-1);
+				var weekday=s_myDate.getDay();
+				//月
+				// console.log(day,weekday);
+				var mon = time.getMonth()+1;
+				c_height.eq(index).children().empty();
+				for(var i=(day-6);i<=day;i++){
+					if(i<1){
+						j=time2.getDate()+i;
+						c_height.eq(index).children().append("<li class='gray' style='color:#bbb'>"+j+"</li>");
+					}else{
+						c_height.eq(index).children().append("<li>"+i+"</li>");
+					}
+				}
+				if(month==(s_myDate.getMonth()+1) && day==s_myDate.getDate()){
+					c_height.eq(index).children().children().eq(weekday).addClass("active");
+				}
+
+			}
+			//显示月
+			function month_time(year,month,index){
+				var time  = new Date(year,month,0);
+				var time2 = new Date(year,month-1,1);
+				c_height.eq(index).children().empty();
+				for(var i=1;i<=time2.getDay();i++){
+					c_height.eq(index).children().append("<li></li>");
+				}
+				for(var i=1;i<=time.getDate();i++){
+					c_height.eq(index).children().append("<li>"+i+"</li>");
+					if (Math.floor((Math.random()*time.getDate())+time2.getDay())==i) {
+						c_height.eq(index).children().children().eq(i).append("<i class='circle'><i>");
+					}
+				}
+				if(month==(s_myDate.getMonth()+1)){
+					c_height.eq(index).children().children().eq(s_myDate.getDate()+time2.getDay()-1).addClass("active");
+				}
+				
+			}
+			//收缩按钮事件
+			function btn_tc(){
+				i_btn.on("touchstart",function(){
+					c_height.toggleClass("shrink");
+					mySwiper.container.toggleClass("shrink");
+					$(this).toggleClass("down");
+					if($(this).hasClass("down")){
+						c_height.children().empty();
+						now_day.text(s_myDate.getFullYear()+"-"+(s_myDate.getMonth()+1)+"-"+s_myDate.getDate());
+						week_time(s_myDate.getFullYear(),s_myDate.getMonth()+1,s_myDate.getDate(),mySwiper.activeIndex);
+						li_tc(w_year,w_month);
+						$(this).children().removeClass(i_up);
+						$(this).children().addClass(i_down);
+						mySwiper.params.autoHeight=false;
+					}else{
+						c_height.children().empty();
+						month_time(s_myDate.getFullYear(),s_myDate.getMonth()+1,mySwiper.activeIndex);
+						li_tc(s_myDate.getFullYear(),s_myDate.getMonth()+1);
+						$(this).children().removeClass(i_down);
+						$(this).children().addClass(i_up);
+						mySwiper.params.autoHeight=true;
+					}
+				})
+			}
+			btn_tc();
+			//日期选中时出现边框
+			function li_tc(year,month){
+				c_li.children().one("touchend",function(){
+					c_li.children().each(function(){
+						$(this).removeClass("border");
+					})
+					if (!($(this).text().length==0)) {
+						$(this).addClass("border");
+						now_day.text("");
+						if($(this).hasClass("gray")){
+							now_day.text(function(){
+							return year+"-"+(month-1)+"-"+c_height.find(".border").text();
+						});
+						}else{
+							now_day.text(function(){
+								return year+"-"+month+"-"+c_height.find(".border").text();
+							});
+						}
+						
+					}
+				})
+			}
+			li_tc(s_year,s_month);
+			//跳转回今天
+			function today(){
+				$(".title a").on("touchend",function(){
+					c_li.children().each(function(){
+						$(this).removeClass("border");
+					})
+					if(i_btn.hasClass("down")){
+						now_day.text(s_myDate.getFullYear()+"-"+(s_myDate.getMonth()+1)+"-"+s_myDate.getDate());
+						c_height.children().empty();
+						w_year=s_myDate.getFullYear();
+						w_month=(s_myDate.getMonth()+1);
+						w_day=s_myDate.getDate();
+						week_time(w_year,w_month,w_day,mySwiper.activeIndex);
+						li_tc(w_year,w_month);
+					}else{
+						now_day.text(s_myDate.getFullYear()+"-"+(s_myDate.getMonth()+1)+"-"+s_myDate.getDate());
+						c_height.children().empty();
+						s_year=s_myDate.getFullYear();
+						s_month=(s_myDate.getMonth()+1);
+						month_time(s_year,s_month,mySwiper.activeIndex);
+						li_tc(s_year,s_month);
+					}
+					
+				})
+			}
+			today();
+			var startx, starty;
+		    //获得角度
+		    function getAngle(angx, angy) {
+		        return Math.atan2(angy, angx) * 180 / Math.PI;
+		    };
+		 
+		    //根据起点终点返回方向 1向上 2向下 0未滑动
+		    function getDirection(startx, starty, endx, endy) {
+		        var angx = endx - startx;
+		        var angy = endy - starty;
+		        var result = 0;
+		 
+		        //如果滑动距离太短
+		        if (Math.abs(angx) < 200 && Math.abs(angy) < 200) {
+		            return result;
+		        }
+		 
+		        var angle = getAngle(angx, angy);
+		        if (angle >= -135 && angle <= -45) {
+		            result = 1;
+		        } else if (angle > 45 && angle < 135) {
+		            result = 2;
+		        }
+		 
+		        return result;
+		    }
+		    //手指接触屏幕
+		    document.addEventListener("touchstart", function(e) {
+		        startx = e.touches[0].pageX;
+		        starty = e.touches[0].pageY;
+		    }, false);
+		    //手指离开屏幕
+		    document.addEventListener("touchend", function(e) {
+		        var endx, endy;
+		        endx = e.changedTouches[0].pageX;
+		        endy = e.changedTouches[0].pageY;
+		        var direction = getDirection(startx, starty, endx, endy);
+		        switch (direction) {
+		            case 0:
+		                break;
+		            case 1:
+		            i_btn.trigger("touchstart");
+		                break;
+		            case 2:
+		                i_btn.trigger("touchstart");
+		                break;
+		            default:
+		        }
+		    }, false);
+				})
+		
+	</script>
+</html>
